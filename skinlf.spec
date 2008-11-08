@@ -1,12 +1,17 @@
-%define _version2	20060722
+%define _version2 20060722
 
-Name:				skinlf
-Summary:			Allows developers to write skinnable application using the Swing toolkit
-URL:				http://skinlf.l2fprod.com/index.html
-Group:				Development/Java
-Version:			6.7
-Release:			%mkrel 0.0.1
-License:			Skin Look And Feel License
+Summary:	Allows developers to write skinnable application using the Swing toolkit
+Name:		skinlf
+Group:		Development/Java
+Version:	6.7
+Release:	%mkrel 0.0.1
+License:	Skin Look And Feel License
+URL:		http://skinlf.l2fprod.com/index.html
+Source0:	%{name}-%{version}-%{_version2}.tar.bz2
+Source1:	imageconversion.jar
+Source2:	%{name}-build.xml
+Source3:	%{name}-resources.tar.bz2
+Patch0:		%{name}-no-jimi.patch
 BuildRequires:	ant
 BuildRequires:	dos2unix
 BuildRequires:	java-rpmbuild >= 1.5
@@ -14,18 +19,13 @@ BuildRequires:	jpackage-utils >= 1.5
 BuildRequires:	laf-plugin >= 0.2
 BuildRequires:	xalan-j2
 #BuildRequires:	jimi >= 1.0
-Requires:			java >= 1.5
-#Requires:			jimi >= 1.0
-Requires:			jpackage-utils >= 1.5
-Requires:			laf-plugin >= 0.2
-Requires:			xalan-j2
-BuildArch:		noarch
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0:			%{name}-%{version}-%{_version2}.tar.bz2
-Source1:			imageconversion.jar
-Source2:			%{name}-build.xml
-Source3:			%{name}-resources.tar.bz2
-Patch0:			%{name}-no-jimi.patch
+Requires:	java >= 1.5
+#Requires:	jimi >= 1.0
+Requires:	jpackage-utils >= 1.5
+Requires:	laf-plugin >= 0.2
+Requires:	xalan-j2
+BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Skin Look And Feel allows Java developers to write skinnable application using
@@ -46,7 +46,7 @@ Javadoc for %{name}.
 %package demo
 Summary:	Some examples for %{name}
 Group:		Development/Java
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description demo
 Some examples for %{name}.
