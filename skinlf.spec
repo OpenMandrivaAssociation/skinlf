@@ -4,7 +4,7 @@ Summary:	Allows developers to write skinnable application using the Swing toolki
 Name:		skinlf
 Group:		Development/Java
 Version:	6.7
-Release:	%mkrel 0.0.4
+Release:	%mkrel 0.0.5
 License:	Skin Look And Feel License
 URL:		http://skinlf.l2fprod.com/index.html
 Source0:	%{name}-%{version}-%{_version2}.tar.bz2
