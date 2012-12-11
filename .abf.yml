@@ -1,5 +1,3 @@
 sources:
-  "imageconversion.jar:"	dc4fd6d19eee8976e0e7013011a908995be440a1
-  "skinlf-6.7-20060722.tar.bz2:"	51bcc24b015c4138bfe0f0362c231f0b196ada5d
-  "skinlf-build.xml:"	ef37d8cc4e0988f0367f15588f0c89ab4bc1e3b0
-  "skinlf-resources.tar.bz2:"	c1ea8e273b94ec293617279660d798f1b3bbd2f2
+  "skinlf-6.7-20060722.tar.bz2": 51bcc24b015c4138bfe0f0362c231f0b196ada5d
+  "skinlf-resources.tar.bz2": c1ea8e273b94ec293617279660d798f1b3bbd2f2

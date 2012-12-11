@@ -4,7 +4,7 @@ Summary:	Allows developers to write skinnable application using the Swing toolki
 Name:		skinlf
 Group:		Development/Java
 Version:	6.7
-Release:	%mkrel 0.0.5
+Release:	0.0.6
 License:	Skin Look And Feel License
 URL:		http://skinlf.l2fprod.com/index.html
 Source0:	%{name}-%{version}-%{_version2}.tar.bz2
@@ -25,7 +25,6 @@ Requires:	jpackage-utils >= 1.5
 Requires:	laf-plugin >= 0.2
 Requires:	xalan-j2
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Skin Look And Feel allows Java developers to write skinnable application using
@@ -54,9 +53,9 @@ Some examples for %{name}.
 %prep
 %setup -q -n %{name}-%{version}
 
-%__cp %{SOURCE1} .
-%__cp %{SOURCE2} build.xml
-%__tar xfj %{SOURCE3}
+cp %{SOURCE1} .
+cp %{SOURCE2} build.xml
+tar xfj %{SOURCE3}
 %patch0
 
 dos2unix  AUTHORS CHANGES INSTALL LICENSE LICENSE_nanoxml README THANKS
@@ -69,22 +68,22 @@ dos2unix  AUTHORS CHANGES INSTALL LICENSE LICENSE_nanoxml README THANKS
 [ -d %{buildroot} -a "%{buildroot}" != "" ] && %__rm -rf %{buildroot}
 
 # jars
-%__install -dm 755 %{buildroot}%{_javadir}
-%__install -pm 644 lib/%{name}.jar \
+install -dm 755 %{buildroot}%{_javadir}
+install -pm 644 lib/%{name}.jar \
 	%{buildroot}%{_javadir}/%{name}-%{version}.jar
 (cd %{buildroot}%{_javadir} && for jar in *-%{version}*; do ln -sf ${jar} `echo $jar| sed "s|-%{version}||g"`; done)
 
 # javadoc
-%__install -dm 755 %{buildroot}%{_javadocdir}/%{name}-%{version}
-%__cp -pr docs/* \
+install -dm 755 %{buildroot}%{_javadocdir}/%{name}-%{version}
+cp -pr docs/* \
 	%{buildroot}%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} %{buildroot}%{_javadocdir}/%{name} # ghost symlink
 
 # demo
-%__install -dm 755 %{buildroot}%{_datadir}/%{name}
-%__install -m 644 lib/%{name}_demo.jar \
+install -dm 755 %{buildroot}%{_datadir}/%{name}
+install -m 644 lib/%{name}_demo.jar \
 	%{buildroot}%{_datadir}/%{name}
-%__install -m 644 lib/themepack.zip \
+install -m 644 lib/themepack.zip \
 	%{buildroot}%{_datadir}/%{name}
 
 # create startscripts for demo-apps
@@ -96,18 +95,18 @@ ln -s %{name}-%{version} %{buildroot}%{_javadocdir}/%{name} # ghost symlink
 EOF
 
 # not supported for linux
-%__cat > bin/region.sh << EOF
+cat > bin/region.sh << EOF
 #!/bin/bash
 %{java} -cp %{_javadir}/%{name}.jar:%{_datadir}/%{name}/%{name}_demo.jar examples.nativesplash
 EOF
 %endif
 
-%__cat > bin/alwaysontop.sh << EOF
+cat > bin/alwaysontop.sh << EOF
 #!/bin/bash
 %{java} -cp %{_javadir}/%{name}.jar:%{_datadir}/%{name}/%{name}_demo.jar examples.alwaysontop
 EOF
 
-%__cat > bin/demo.sh << EOF
+cat > bin/demo.sh << EOF
 #!/bin/bash
 THEMEPACK=\$1
 if [ "\$THEMEPACK" == "" ]; then
@@ -119,18 +118,14 @@ fi
 EOF
 
 # install startscripts for demo-apps
-%__install -m 755 bin/*.sh \
+install -m 755 bin/*.sh \
 	%{buildroot}%{_datadir}/%{name}
-
-%clean
-[ -d %{buildroot} -a "%{buildroot}" != "" ] && %__rm -rf %{buildroot}
 
 %post javadoc
 %__rm -f %{_javadocdir}/%{name}
 ln -s %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
-%defattr(-,root,root)
 %doc AUTHORS CHANGES INSTALL LICENSE LICENSE_nanoxml README THANKS
 %{_javadir}/%{name}*.jar
 
@@ -140,8 +135,8 @@ ln -s %{name}-%{version} %{_javadocdir}/%{name}
 %ghost %doc %{_javadocdir}/%{name}
 
 %files demo
-%defattr(-,root,root)
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.jar
 %{_datadir}/%{name}/*.sh
 %{_datadir}/%{name}/themepack.zip
+
