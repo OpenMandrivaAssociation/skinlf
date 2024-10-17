@@ -6,7 +6,7 @@ Group:		Development/Java
 Version:	6.7
 Release:	0.0.7
 License:	Skin Look And Feel License
-URL:		http://skinlf.l2fprod.com/index.html
+URL:		https://skinlf.l2fprod.com/index.html
 Source0:	%{name}-%{version}-%{_version2}.tar.bz2
 Source1:	imageconversion.jar
 Source2:	%{name}-build.xml
